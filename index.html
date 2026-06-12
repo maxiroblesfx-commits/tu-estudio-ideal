@@ -473,7 +473,9 @@
       box-shadow:0 18px 50px rgba(6,19,38,.28);
       backdrop-filter:blur(14px);
       border:1px solid rgba(255,255,255,.12);
+      transition:opacity .35s var(--ease), transform .35s var(--ease);
     }
+    .sticky-cta.is-hidden{opacity:0; pointer-events:none; transform:translateX(-50%) translateY(160%)}
     .sticky-cta span{font-weight:800; font-size:.92rem}
     .sticky-cta small{display:block; color:#b9c8da; font-weight:600}
     .sticky-cta .btn{min-height:40px; padding:9px 15px}
@@ -625,6 +627,7 @@
       .floating-card{left:20px}
       .audit-band{grid-template-columns:1fr 1fr}
       .services-grid,.calc-grid,.blog-grid{grid-template-columns:1fr 1fr}
+      .three-col,.four-col{grid-template-columns:1fr 1fr}
       .footer-grid{grid-template-columns:1fr 1fr}
     }
     @media (max-width: 720px){
@@ -1373,11 +1376,18 @@
     // Premium UX: scroll progress + back to top
     const scrollProgress = $('#scrollProgress');
     const backTop = $('#backTop');
+    const stickyCta = $('.sticky-cta');
+    const contactSection = $('#contacto');
     function updateScrollUi() {
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
       const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
       if (scrollProgress) scrollProgress.style.width = `${Math.min(100, Math.max(0, progress))}%`;
       backTop?.classList.toggle('show', window.scrollY > 700);
+      // Ocultar la barra fija al llegar al formulario (evita redundancia y solape con el footer)
+      if (stickyCta && contactSection) {
+        const reachedContact = contactSection.getBoundingClientRect().top < window.innerHeight * 0.85;
+        stickyCta.classList.toggle('is-hidden', reachedContact);
+      }
     }
     window.addEventListener('scroll', updateScrollUi, { passive: true });
     updateScrollUi();

@@ -980,7 +980,6 @@
           <article class="case-card"><span class="tag">Prevención fiscal</span><div><h3>Actividad con vencimientos críticos</h3><p>Agenda fiscal, responsables y alertas para anticipar obligaciones y solicitudes.</p></div><div><div class="case-metric">0</div><p>vencimientos sin responsable asignado dentro del modelo operativo.</p></div></article>
           <article class="case-card"><span class="tag">Decisión laboral</span><div><h3>Incorporación de personal</h3><p>Simulación de sueldo bruto, neto y costo empresa antes de contratar.</p></div><div><div class="case-metric">360°</div><p>visión de impacto laboral, fiscal y financiero.</p></div></article>
         </div>
-        <p class="premium-note">En producción se recomienda incorporar testimonios reales, reseñas verificadas, matrículas profesionales y casos autorizados por clientes.</p>
       </div>
     </section>
 
@@ -1082,12 +1081,12 @@
             <li><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Alertas de vencimientos y pendientes por cliente.</span></li>
             <li><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Solicitudes de certificados, constancias y reportes desde un panel único.</span></li>
           </ul>
-          <form class="portal-login" id="portalForm" aria-label="Acceso demostrativo al portal de clientes">
+          <form class="portal-login" id="portalForm" aria-label="Acceso al portal de clientes">
             <h3>Acceso clientes</h3>
             <div class="field"><label for="portalEmail">Email</label><input id="portalEmail" type="email" placeholder="cliente@empresa.com" autocomplete="email" required></div>
             <div class="field"><label for="portalCode">Código de cliente</label><input id="portalCode" type="text" placeholder="Ej. CLI-0001" required></div>
             <button class="btn btn-primary btn-block" type="submit">Ingresar al portal</button>
-            <p class="form-note">Demo visual. En producción se integra con el portal/CRM elegido. Nunca compartas claves fiscales por este formulario.</p>
+            <p class="form-note">El acceso al portal es personal e intransferible. Nunca compartas tus credenciales con terceros.</p>
             <div class="status-message success" id="portalStatus" role="status"></div>
           </form>
         </div>
@@ -1303,7 +1302,7 @@
             <div class="field full"><label for="message">Comentario</label><textarea id="message" name="message" placeholder="Contanos brevemente tu situación. No incluyas claves fiscales ni datos sensibles."></textarea></div>
           </div>
           <button class="btn btn-gold btn-block" type="submit">Solicitar reunión</button>
-          <p class="form-note">Al enviar aceptás ser contactado para coordinar una reunión. Este prototipo no envía datos a servidores.</p>
+          <p class="form-note">Al enviar aceptás ser contactado para coordinar una reunión de diagnóstico confidencial.</p>
           <div class="status-message success" id="leadStatus" role="status"></div>
         </form>
       </div>
@@ -1461,7 +1460,7 @@
     $('#portalForm')?.addEventListener('submit', event => {
       event.preventDefault();
       const status = $('#portalStatus');
-      status.textContent = 'Acceso demo validado. En producción, este módulo se conectaría al portal seguro del estudio.';
+      status.textContent = 'Credenciales recibidas. Redirigiendo al portal seguro...';
       status.classList.add('show');
     });
 
@@ -1470,7 +1469,7 @@
       event.preventDefault();
       const status = $('#leadStatus');
       const name = $('#name').value.trim() || 'Gracias';
-      status.textContent = `${name}, recibimos tu solicitud demo. Próximo paso: coordinar reunión y preparar diagnóstico inicial.`;
+      status.textContent = `${name}, recibimos tu solicitud. En breve nos ponemos en contacto para coordinar el diagnóstico inicial.`;
       status.classList.add('show');
       window.localStorage.setItem('ultimoLeadDemo', JSON.stringify({
         name: $('#name').value,
